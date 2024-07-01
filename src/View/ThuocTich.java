@@ -6,9 +6,11 @@ package View;
 
 import Dao.LoaiDao;
 import Dao.MauDao;
+import Dao.TenSuaDao;
 import Dao.ViDao;
 import Model.Loai;
 import Model.Mau;
+import Model.TenSua;
 import Model.Vi;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,6 +27,7 @@ public class ThuocTich extends java.awt.Dialog {
     MauDao mauDao;
     ViDao viDao;
     LoaiDao loaiDao;
+    TenSuaDao tensuaDao;
     int index = -1;
 
     /**
@@ -36,9 +39,11 @@ public class ThuocTich extends java.awt.Dialog {
         mauDao = new MauDao();
         viDao = new ViDao();
         loaiDao = new LoaiDao();
+        tensuaDao = new TenSuaDao();
         fillTableMau();
         fillTableVi();
         fillTableLoai();
+        fillTableTenSua();
 
     }
 
@@ -69,6 +74,15 @@ public class ThuocTich extends java.awt.Dialog {
         return loai;
     }
 
+    private TenSua getFormTenSua() {
+        TenSua tenSua = new TenSua();
+        if (index != -1) {
+            tenSua.setId(Integer.parseInt(txtIDSua.getText()));
+        }
+        tenSua.setTenSua(txtTenSua.getText());
+        return tenSua;
+    }
+
     private void setFormMau(int index) {
         if (index != -1) {
             String idMau = tblMau.getValueAt(index, 0).toString();
@@ -95,6 +109,16 @@ public class ThuocTich extends java.awt.Dialog {
 
             txtIDLoai.setText(idLoai);
             txtTenLoai.setText(tenLoai);
+        }
+    }
+
+    private void setFormTenSua(int index) {
+        if (index != -1) {
+            String idTenSua = tblTenSua.getValueAt(index, 0).toString();
+            String tenTenSua = tblTenSua.getValueAt(index, 1).toString();
+
+            txtIDLoai.setText(idTenSua);
+            txtTenLoai.setText(tenTenSua);
         }
     }
 
@@ -161,6 +185,27 @@ public class ThuocTich extends java.awt.Dialog {
         }
     }
 
+    void fillTableTenSua() {
+        defaultTableModel = (DefaultTableModel) tblTenSua.getModel();
+        defaultTableModel.setRowCount(0);
+        try {
+            List<TenSua> tenSuas = tensuaDao.filAll();
+            if (tenSuas.isEmpty()) {
+                System.out.println("List tensua null");
+            }
+            for (TenSua tenSua : tenSuas) {
+                Object[] row = {
+                    tenSua.getId(),
+                    tenSua.getTenSua(),
+                    tenSua.getTrangThai() == 1 ? "Tồn Tại" : "Không Tồn Tại"
+                };
+                defaultTableModel.addRow(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -199,12 +244,12 @@ public class ThuocTich extends java.awt.Dialog {
         btnXoaVi = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblMau1 = new javax.swing.JTable();
+        tblTenSua = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
-        txtIDMau1 = new javax.swing.JTextField();
-        btnThemMau1 = new javax.swing.JButton();
+        txtIDSua = new javax.swing.JTextField();
+        btnThemTenSua = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        txtTenMau1 = new javax.swing.JTextField();
+        txtTenSua = new javax.swing.JTextField();
         btnSuaMau1 = new javax.swing.JButton();
         btnXoaMau1 = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
@@ -474,7 +519,7 @@ public class ThuocTich extends java.awt.Dialog {
         jPanel8.setToolTipText("");
         jPanel8.setPreferredSize(new java.awt.Dimension(400, 309));
 
-        tblMau1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTenSua.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -485,38 +530,38 @@ public class ThuocTich extends java.awt.Dialog {
                 "ID", "Tên Sữa", "Trạng Thái"
             }
         ));
-        tblMau1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblTenSua.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblMau1MouseClicked(evt);
+                tblTenSuaMouseClicked(evt);
             }
         });
-        jScrollPane3.setViewportView(tblMau1);
+        jScrollPane3.setViewportView(tblTenSua);
 
         jLabel10.setText("ID");
 
-        txtIDMau1.setEnabled(false);
-        txtIDMau1.addActionListener(new java.awt.event.ActionListener() {
+        txtIDSua.setEnabled(false);
+        txtIDSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDMau1ActionPerformed(evt);
+                txtIDSuaActionPerformed(evt);
             }
         });
 
-        btnThemMau1.setBackground(new java.awt.Color(102, 255, 102));
-        btnThemMau1.setForeground(new java.awt.Color(255, 255, 255));
-        btnThemMau1.setMnemonic('T');
-        btnThemMau1.setText("Add");
-        btnThemMau1.setAutoscrolls(true);
-        btnThemMau1.addActionListener(new java.awt.event.ActionListener() {
+        btnThemTenSua.setBackground(new java.awt.Color(102, 255, 102));
+        btnThemTenSua.setForeground(new java.awt.Color(255, 255, 255));
+        btnThemTenSua.setMnemonic('T');
+        btnThemTenSua.setText("Add");
+        btnThemTenSua.setAutoscrolls(true);
+        btnThemTenSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemMau1ActionPerformed(evt);
+                btnThemTenSuaActionPerformed(evt);
             }
         });
 
         jLabel11.setText("Tên Sữa");
 
-        txtTenMau1.addActionListener(new java.awt.event.ActionListener() {
+        txtTenSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenMau1ActionPerformed(evt);
+                txtTenSuaActionPerformed(evt);
             }
         });
 
@@ -544,7 +589,7 @@ public class ThuocTich extends java.awt.Dialog {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addComponent(btnThemMau1)
+                        .addComponent(btnThemTenSua)
                         .addGap(18, 18, 18)
                         .addComponent(btnSuaMau1)
                         .addGap(18, 18, 18)
@@ -555,8 +600,8 @@ public class ThuocTich extends java.awt.Dialog {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
-                            .addComponent(txtIDMau1, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                            .addComponent(txtTenMau1))))
+                            .addComponent(txtIDSua, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                            .addComponent(txtTenSua))))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -566,15 +611,15 @@ public class ThuocTich extends java.awt.Dialog {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtIDMau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIDSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTenMau1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTenSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemMau1)
+                    .addComponent(btnThemTenSua)
                     .addComponent(btnSuaMau1)
                     .addComponent(btnXoaMau1))
                 .addGap(0, 0, 0))
@@ -609,7 +654,7 @@ public class ThuocTich extends java.awt.Dialog {
             }
         });
 
-        btnThemLoai.setBackground(new java.awt.Color(102, 255, 102));
+        btnThemLoai.setBackground(new java.awt.Color(51, 204, 0));
         btnThemLoai.setForeground(new java.awt.Color(255, 255, 255));
         btnThemLoai.setMnemonic('T');
         btnThemLoai.setText("Add");
@@ -628,6 +673,8 @@ public class ThuocTich extends java.awt.Dialog {
             }
         });
 
+        btnSuaLoai.setBackground(new java.awt.Color(0, 153, 255));
+        btnSuaLoai.setForeground(new java.awt.Color(255, 255, 255));
         btnSuaLoai.setText("Edit");
         btnSuaLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -644,7 +691,7 @@ public class ThuocTich extends java.awt.Dialog {
             }
         });
 
-        btnKhoiPhucLoai.setText("Khoi Phuc");
+        btnKhoiPhucLoai.setText("Khôi Phục");
         btnKhoiPhucLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnKhoiPhucLoaiActionPerformed(evt);
@@ -657,34 +704,30 @@ public class ThuocTich extends java.awt.Dialog {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtTenLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                        .addComponent(txtIDLoai))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(btnThemLoai)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSuaLoai)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXoaLoai)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnKhoiPhucLoai))
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel12))
                     .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtTenLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                                .addComponent(txtIDLoai))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel12))
-                            .addGroup(jPanel11Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnThemLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSuaLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnXoaLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnKhoiPhucLoai, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -692,14 +735,16 @@ public class ThuocTich extends java.awt.Dialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTenLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemLoai)
-                    .addComponent(btnSuaLoai)
-                    .addComponent(btnXoaLoai)
-                    .addComponent(btnKhoiPhucLoai)))
+                        .addComponent(txtTenLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnThemLoai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnSuaLoai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnXoaLoai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnKhoiPhucLoai)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout tbl1Layout = new javax.swing.GroupLayout(tbl1);
@@ -1257,21 +1302,27 @@ public class ThuocTich extends java.awt.Dialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSuaMau1ActionPerformed
 
-    private void txtTenMau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenMau1ActionPerformed
+    private void txtTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenMau1ActionPerformed
+    }//GEN-LAST:event_txtTenSuaActionPerformed
 
-    private void btnThemMau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMau1ActionPerformed
+    private void btnThemTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTenSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThemMau1ActionPerformed
+        TenSua tenSua = getFormTenSua();
+        int btnThem = tensuaDao.create(tenSua);
+        if (btnThem > 0) {
+            System.out.println("Thêm Thành Công Tên Sữa");
+            fillTableTenSua();
+        }
+    }//GEN-LAST:event_btnThemTenSuaActionPerformed
 
-    private void txtIDMau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDMau1ActionPerformed
+    private void txtIDSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDMau1ActionPerformed
+    }//GEN-LAST:event_txtIDSuaActionPerformed
 
-    private void tblMau1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMau1MouseClicked
+    private void tblTenSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTenSuaMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tblMau1MouseClicked
+    }//GEN-LAST:event_tblTenSuaMouseClicked
 
     private void btnThemViActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemViActionPerformed
         // TODO add your handling code here:
@@ -1458,10 +1509,10 @@ public class ThuocTich extends java.awt.Dialog {
     private javax.swing.JButton btnSuaVi1;
     private javax.swing.JButton btnThemLoai;
     private javax.swing.JButton btnThemMau;
-    private javax.swing.JButton btnThemMau1;
     private javax.swing.JButton btnThemMau3;
     private javax.swing.JButton btnThemMau4;
     private javax.swing.JButton btnThemMau5;
+    private javax.swing.JButton btnThemTenSua;
     private javax.swing.JButton btnThemVi;
     private javax.swing.JButton btnThemVi1;
     private javax.swing.JButton btnXoaLoai;
@@ -1515,26 +1566,26 @@ public class ThuocTich extends java.awt.Dialog {
     private javax.swing.JPanel tbl2;
     private javax.swing.JTable tblLoai;
     private javax.swing.JTable tblMau;
-    private javax.swing.JTable tblMau1;
     private javax.swing.JTable tblMau3;
     private javax.swing.JTable tblMau4;
     private javax.swing.JTable tblMau5;
+    private javax.swing.JTable tblTenSua;
     private javax.swing.JTable tblVi;
     private javax.swing.JTable tblVi1;
     private javax.swing.JTextField txtIDLoai;
     private javax.swing.JTextField txtIDMau;
-    private javax.swing.JTextField txtIDMau1;
     private javax.swing.JTextField txtIDMau3;
     private javax.swing.JTextField txtIDMau4;
     private javax.swing.JTextField txtIDMau5;
+    private javax.swing.JTextField txtIDSua;
     private javax.swing.JTextField txtIDVi;
     private javax.swing.JTextField txtIDVi1;
     private javax.swing.JTextField txtTenLoai;
     private javax.swing.JTextField txtTenMau;
-    private javax.swing.JTextField txtTenMau1;
     private javax.swing.JTextField txtTenMau3;
     private javax.swing.JTextField txtTenMau4;
     private javax.swing.JTextField txtTenMau5;
+    private javax.swing.JTextField txtTenSua;
     private javax.swing.JTextField txtTenVi;
     private javax.swing.JTextField txtTenVi1;
     // End of variables declaration//GEN-END:variables
