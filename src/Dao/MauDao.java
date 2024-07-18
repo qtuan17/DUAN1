@@ -78,13 +78,26 @@ public class MauDao {
         String sql = "UPDATE Mau set trangthai = ? WHERE Mau_ID = ?";
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, mau.getTrangThai());
+            preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, mau.getId());
             rowedit = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return rowedit;
+    }
+    public int khoiphuc(Mau mau) {
+        int khoiphuc = 0;
+        String sql = "UPDATE Mau set trangthai = ? WHERE Mau_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, mau.getId());
+            khoiphuc = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return khoiphuc;
     }
 
 }
