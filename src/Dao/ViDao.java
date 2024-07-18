@@ -57,4 +57,43 @@ public class ViDao {
         }
         return rowedit;
     }
+    public int update(Vi vi) {
+        int editvi = 0;
+        String sql = "UPDATE Vi set TenVi = ? WHERE TenVi_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, vi.getTenVi());
+            preparedStatement.setInt(2, vi.getId());
+            editvi = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return editvi;
+    }
+    public int delete(Vi vi){
+        int xoavi = 0;
+        String sql = "UPDATE Vi set trangthai = ? WHERE Vi_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setInt(2, vi.getId());
+            xoavi = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return xoavi;
+    }
+    public int khoiphuc(Vi vi) {
+        int khoiphuc = 0;
+        String sql = "UPDATE Vi set trangthai = ? WHERE Vi_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, vi.getId());
+            khoiphuc = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return khoiphuc;
+    }
 }

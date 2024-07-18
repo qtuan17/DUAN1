@@ -74,6 +74,7 @@ public class TenSuaDao {
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, tenSua.getId());
+            xoasua = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
