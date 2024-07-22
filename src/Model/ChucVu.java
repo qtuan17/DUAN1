@@ -4,11 +4,18 @@
  */
 package Model;
 
+import java.util.Set;
+
 /**
  *
  * @author tuanb
  */
 
 public class ChucVu {
+    private int id;
+    private String TenCV;
+    private int TrangThai;
+    
+    
     
 }

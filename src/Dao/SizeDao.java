@@ -41,4 +41,44 @@ public class SizeDao {
         }
         return sizes;
     }
+    
+    public int create(Size size) {
+        int themsize = 0;
+        String sql = "INSERT INTO Size (TenSize, TrangThai) VALUES \n"
+                + "(?, 1)";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, size.getTenSize());
+            themsize = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return themsize;
+    }
+    public int update(Size size) {
+        int editsize = 0;
+        String sql = "UPDATE Size set TenSize = ? WHERE TenSize_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, size.getTenSize());
+            preparedStatement.setInt(2, size.getId());
+            editsize = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return editsize;
+    }
+    public int delete(Size size){
+        int xoa = 0;
+        String sql = "UPDATE Size set trangthai = ? WHERE TenSize_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setInt(2, size.getId());
+            xoa = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return xoa;
+    }
 }
