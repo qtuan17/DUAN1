@@ -4,6 +4,8 @@
  */
 package ViewModel;
 
+import java.util.Date;
+
 /**
  *
  * @author tuanb
@@ -17,6 +19,8 @@ public class Chitietview {
     private String TenVi;
     private String HinhDang;
     private String TenSize;
+    private int Gia;
+    private Date HanSuDung;
     private int TrangThai;
 
     public Chitietview() {
