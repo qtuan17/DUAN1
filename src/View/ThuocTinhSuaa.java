@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
 
@@ -20,16 +20,14 @@ import Model.Size;
 import Model.Vi;
 import ViewModel.Chitietview;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author tuanb
  */
-public class ThuocTinhSua extends javax.swing.JFrame {
-
+public class ThuocTinhSuaa extends javax.swing.JPanel {
+    
     private DefaultTableModel model;
     MauDao mauDao;
     ViDao viDao;
@@ -40,10 +38,12 @@ public class ThuocTinhSua extends javax.swing.JFrame {
     HangDao hangDao;
     HinhDangDao hinhDangDao;
     int index = -1;
-
-    public ThuocTinhSua() throws Exception {
+    /**
+     * Creates new form ThuocTinhSuaa
+     */
+    public ThuocTinhSuaa() throws Exception {
         initComponents();
-        setLocationRelativeTo(this);
+        
         mauDao = new MauDao();
         viDao = new ViDao();
         loaiDao = new LoaiDao();
@@ -67,7 +67,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         getCbbVi();
         getCbbHinhDang();
         getCbbSize();
-        setVisible(true);
+//        setVisible(true);
     }
 
 //    void ThuocTinhSua() throws Exception{
@@ -583,8 +583,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         btnSuaVisua = new javax.swing.JButton();
         btnXoaViSua = new javax.swing.JButton();
         btnKhoiPhucVisua = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTabbedPane2.setFocusable(false);
         jTabbedPane2.setName("Bảng 1"); // NOI18N
@@ -1264,7 +1262,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
                 .addGroup(tbl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 180, Short.MAX_VALUE))
+                .addGap(0, 550, Short.MAX_VALUE))
         );
         tbl2Layout.setVerticalGroup(
             tbl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1276,7 +1274,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
                 .addGroup(tbl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(BangHang, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Quản Lí Chi Tiết Sữa", tbl2);
@@ -1288,7 +1286,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1297,8 +1295,8 @@ public class ThuocTinhSua extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -1308,11 +1306,9 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIDChiTietSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChiTietSuaActionPerformed
@@ -1324,11 +1320,11 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         //        ChiTietSua chiTietSua = getFormChiTietSua();
         //        int addChiTietSua = chiTietSuaDao.create(chiTietSua);
         //        if (addChiTietSua > 0) {
-        //            System.out.println("ADD THanh COng");
-        //            fillTableChiTietSua();
+            //            System.out.println("ADD THanh COng");
+            //            fillTableChiTietSua();
 
-        //        }
-//        JOptionPane.showMessageDialog(btnThemAll, "bạn đã thêm thành công");
+            //        }
+        //        JOptionPane.showMessageDialog(btnThemAll, "bạn đã thêm thành công");
     }//GEN-LAST:event_btnThemAllActionPerformed
 
     private void btnSuaAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaAllActionPerformed
@@ -1336,9 +1332,9 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         //        Mau mau = getFormMau();
         //        int edit = mauDao.update(mau);
         //        if (edit > 0) {
-        //            System.out.println("edit THanh COng");
-        //            fillTableMau();
-        //        }
+            //            System.out.println("edit THanh COng");
+            //            fillTableMau();
+            //        }
     }//GEN-LAST:event_btnSuaAllActionPerformed
 
     private void btnXoaMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMauActionPerformed
@@ -1346,9 +1342,9 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         //        Mau mau = getFormMau();
         //        int edit = mauDao.delete(mau);
         //        if (edit > 0) {
-        //            System.out.println("DELETE THanh COng");
-        //            fillTableMau();
-        //        }
+            //            System.out.println("DELETE THanh COng");
+            //            fillTableMau();
+            //        }
     }//GEN-LAST:event_btnXoaMauActionPerformed
 
     private void tblChiTietSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSuaMouseClicked
@@ -1360,13 +1356,13 @@ public class ThuocTinhSua extends javax.swing.JFrame {
     private void btnKhoiPhucMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucMauActionPerformed
         // TODO add your handling code here:
         //        if (index != -1) {
-        //            Mau mau = getFormMau();
-        //            int edit = mauDao.khoiphuc(mau);
-        //            if (edit > 0) {
-        //                System.out.println("KHoi Phuc THanh COng");
-        //                fillTableMau();
-        //            }
-        //        }
+            //            Mau mau = getFormMau();
+            //            int edit = mauDao.khoiphuc(mau);
+            //            if (edit > 0) {
+                //                System.out.println("KHoi Phuc THanh COng");
+                //                fillTableMau();
+                //            }
+            //        }
     }//GEN-LAST:event_btnKhoiPhucMauActionPerformed
 
     private void txtTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSuaActionPerformed
@@ -1455,7 +1451,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
 
     private void txtTenHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenHangMouseClicked
         // TODO add your handling code here:
-
     }//GEN-LAST:event_txtTenHangMouseClicked
 
     private void txtTenHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHangActionPerformed
@@ -1558,43 +1553,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnKhoiPhucVisuaActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ThuocTinhSua().setVisible(true);
-                } catch (Exception e) {
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BangHang;
