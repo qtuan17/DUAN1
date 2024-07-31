@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package View;
 
@@ -21,15 +21,13 @@ import Model.TenSua;
 import Model.Vi;
 import ViewModel.Chitietview;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author tuanb
  */
-public class ThuocTinhSua extends javax.swing.JFrame {
+public class SanPhamPanel extends javax.swing.JPanel {
 
     private DefaultTableModel model;
     MauDao mauDao;
@@ -37,22 +35,20 @@ public class ThuocTinhSua extends javax.swing.JFrame {
     LoaiDao loaiDao;
     TenSuaDao tensuaDao;
     SizeDao sizeDao;
-    ChiTietSuaDao chiTietSuaDao;
     HangDao hangDao;
     HinhDangDao hinhDangDao;
+    ChiTietSuaDao chiTietSuaDao;
     int index = -1;
-
-    public ThuocTinhSua() throws Exception {
+    public SanPhamPanel(java.awt.Frame parent, boolean modal) throws Exception {
         initComponents();
-        setLocationRelativeTo(this);
         mauDao = new MauDao();
         viDao = new ViDao();
         loaiDao = new LoaiDao();
         tensuaDao = new TenSuaDao();
         sizeDao = new SizeDao();
-        chiTietSuaDao = new ChiTietSuaDao();
         hangDao = new HangDao();
         hinhDangDao = new HinhDangDao();
+        chiTietSuaDao = new ChiTietSuaDao();
         fillTablesize();
         fillTableMau();
         fillTableVi();
@@ -61,19 +57,18 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         fillTableChiTietSua();
         fillTableHang();
         fillTableHinhDang();
-
+        
         getCBBTenMau();
         getCbbLoai();
         getCbbHang();
         getCbbVi();
         getCbbHinhDang();
         getCbbSize();
-        setVisible(true);
     }
 
-//    void ThuocTinhSua() throws Exception{
-//        
-//    }
+    SanPhamPanel() throws Exception{
+    }
+    
     public void getCBBTenMau() {
         List<Mau> lstMau = mauDao.filAll();
         for (Mau mau : lstMau) {
@@ -514,7 +509,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         tbl1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -619,19 +613,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         btnSuaSize = new javax.swing.JButton();
         btnXoaSize = new javax.swing.JButton();
         btnKhoiPhucSize = new javax.swing.JButton();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1825, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
-        );
 
         jTabbedPane2.setFocusable(false);
         jTabbedPane2.setName("Bảng 1"); // NOI18N
@@ -854,7 +835,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
             tbl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tbl1Layout.createSequentialGroup()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1020, Short.MAX_VALUE))
+                .addContainerGap(924, Short.MAX_VALUE))
         );
         tbl1Layout.setVerticalGroup(
             tbl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1683,7 +1664,7 @@ public class ThuocTinhSua extends javax.swing.JFrame {
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         tbl2Layout.setVerticalGroup(
             tbl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1703,433 +1684,31 @@ public class ThuocTinhSua extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Quản Lí Chi Tiết Sữa", tbl2);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 1781, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGap(0, 795, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnKhoiPhucMau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucMau1ActionPerformed
-        // khoi phuc
-
-        if (index != -1) {
-            Mau mau = getFormMau();
-            int edit = mauDao.khoiphuc(mau);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableMau();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucMau1ActionPerformed
-
-    private void btnXoaMauaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMauaActionPerformed
+    private void txtIDChiTietSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChiTietSuaActionPerformed
         // TODO add your handling code here:
-        Mau mau = getFormMau();
-        int edit = mauDao.delete(mau);
-        if (edit > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableMau();
-        }
-    }//GEN-LAST:event_btnXoaMauaActionPerformed
-
-    private void btnSuaMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaMauActionPerformed
-        // TODO add your handling code here:
-        Mau mau = getFormMau();
-        int edit = mauDao.update(mau);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableMau();
-        }
-    }//GEN-LAST:event_btnSuaMauActionPerformed
-
-    private void txtTenMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenMauActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenMauActionPerformed
-
-    private void btnThemMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMauActionPerformed
-        // TODO add your handling code here:
-        Mau mau = getFormMau();
-        int addMau = mauDao.create(mau);
-        if (addMau > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableMau();
-        }
-    }//GEN-LAST:event_btnThemMauActionPerformed
-
-    private void txtIDMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDMauActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDMauActionPerformed
-
-    private void tblMauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMauMouseClicked
-        // TODO add your handling code here:
-        index = tblMau.getSelectedRow();
-        setFormMau(index);
-    }//GEN-LAST:event_tblMauMouseClicked
-
-    private void btnKhoiPhucTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucTenSuaActionPerformed
-        // TODO add your handling code here:
-        if (index != -1) {
-            TenSua tenSua = getFormTenSua();
-            int edit = tensuaDao.khoiphuc(tenSua);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableTenSua();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucTenSuaActionPerformed
-
-    private void btnXoasuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoasuaActionPerformed
-        // TODO add your handling code here:
-        TenSua tenSua = getFormTenSua();
-        int edit = tensuaDao.delete(tenSua);
-        if (edit > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableTenSua();
-        }
-    }//GEN-LAST:event_btnXoasuaActionPerformed
-
-    private void btnSuasuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuasuaActionPerformed
-        // TODO add your handling code here:
-        TenSua tenSua = getFormTenSua();
-        int edit = tensuaDao.update(tenSua);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableTenSua();
-        }
-    }//GEN-LAST:event_btnSuasuaActionPerformed
-
-    private void txtTenSua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSua1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenSua1ActionPerformed
-
-    private void btnThemsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemsuaActionPerformed
-        // TODO add your handling code here:
-        TenSua tenSua = getFormTenSua();
-        int addTenSua = tensuaDao.create(tenSua);
-        if (addTenSua > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableTenSua();
-        }
-
-    }//GEN-LAST:event_btnThemsuaActionPerformed
-
-    private void txtIDTenSua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDTenSua1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDTenSua1ActionPerformed
-
-    private void tblTenSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTenSuaMouseClicked
-        // TODO add your handling code here:
-        index = tblTenSua.getSelectedRow();
-        setFormTenSua(index);
-    }//GEN-LAST:event_tblTenSuaMouseClicked
-
-    private void btnKhoiPhucVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucVisuaActionPerformed
-        // TODO add your handling code here:
-        if (index != -1) {
-            Vi vi = getFormVi();
-            int edit = viDao.khoiphuc(vi);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableVi();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucVisuaActionPerformed
-
-    private void btnXoaViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaViSuaActionPerformed
-        // TODO add your handling code here:
-        Vi vi = getFormVi();
-        int edit = viDao.delete(vi);
-        if (edit > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableVi();
-        }
-    }//GEN-LAST:event_btnXoaViSuaActionPerformed
-
-    private void btnSuaVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaVisuaActionPerformed
-        // TODO add your handling code here:
-        Vi vi = getFormVi();
-        int edit = viDao.update(vi);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableVi();
-        }
-    }//GEN-LAST:event_btnSuaVisuaActionPerformed
-
-    private void btnThemVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVisuaActionPerformed
-        // TODO add your handling code here:
-        Vi vi = getFormVi();
-        int addVi = viDao.create(vi);
-        if (addVi > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableVi();
-        }
-    }//GEN-LAST:event_btnThemVisuaActionPerformed
-
-    private void txtTenViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenViSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenViSuaActionPerformed
-
-    private void txtTenViSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenViSuaMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenViSuaMouseClicked
-
-    private void txtIDViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDViSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDViSuaActionPerformed
-
-    private void tblViSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViSuaMouseClicked
-        // TODO add your handling code here:
-        index = tblViSua.getSelectedRow();
-        setFormVi(index);
-    }//GEN-LAST:event_tblViSuaMouseClicked
-
-    private void btnKhoiPhucHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucHinhDangActionPerformed
-        // TODO add your handling code here:
-        if (index != -1) {
-            HinhDang hinhDang = getFormHinhDang();
-            int edit = hinhDangDao.khoiphuc(hinhDang);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableHinhDang();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucHinhDangActionPerformed
-
-    private void btnXoaHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHinhDangActionPerformed
-        // TODO add your handling code here:
-        HinhDang hinhDang = getFormHinhDang();
-        int edit = hinhDangDao.delete(hinhDang);
-        if (edit > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableHinhDang();
-        }
-    }//GEN-LAST:event_btnXoaHinhDangActionPerformed
-
-    private void btnSuaHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaHinhDangActionPerformed
-        // TODO add your handling code here:
-        HinhDang hinhDang = getFormHinhDang();
-        int edit = hinhDangDao.update(hinhDang);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableHinhDang();
-        }
-    }//GEN-LAST:event_btnSuaHinhDangActionPerformed
-
-    private void txtTenHinhdangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHinhdangActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_txtTenHinhdangActionPerformed
-
-    private void btnThemHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHinhDangActionPerformed
-        // TODO add your handling code here:
-        HinhDang hinhDang = getFormHinhDang();
-        int addHinhDang = hinhDangDao.create(hinhDang);
-        if (addHinhDang > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableHinhDang();
-        }
-    }//GEN-LAST:event_btnThemHinhDangActionPerformed
-
-    private void txtIDHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDHinhDangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDHinhDangActionPerformed
-
-    private void tblHinhDangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHinhDangMouseClicked
-        // TODO add your handling code here:
-        index = tblHinhDang.getSelectedRow();
-        setFormHinhDang(index);
-
-    }//GEN-LAST:event_tblHinhDangMouseClicked
-
-    private void btnKhoiPhucHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucHangActionPerformed
-        // TODO add your handling code here:
-        if (index != -1) {
-            Hang hang = getFormHang();
-            int edit = hangDao.khoiphuc(hang);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableHang();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucHangActionPerformed
-
-    private void btnXoaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHangActionPerformed
-        // TODO add your handling code here:
-        Hang hang = getFormHang();
-        int edit = hangDao.delete(hang);
-        if (edit > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableHang();
-        }
-    }//GEN-LAST:event_btnXoaHangActionPerformed
-
-    private void btnSuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaHangActionPerformed
-        // TODO add your handling code here:
-        Hang hang = getFormHang();
-        int edit = hangDao.update(hang);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableHang();
-        }
-    }//GEN-LAST:event_btnSuaHangActionPerformed
-
-    private void txtTenHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenHangActionPerformed
-
-    private void txtTenHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenHangMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenHangMouseClicked
-
-    private void btnThemHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHangActionPerformed
-        // TODO add your handling code here:
-        Hang hang = getFormHang();
-        int addHang = hangDao.create(hang);
-        if (addHang > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableHang();
-        }
-    }//GEN-LAST:event_btnThemHangActionPerformed
-
-    private void txtIDHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDHangActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDHangActionPerformed
-
-    private void tblHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHangMouseClicked
-        // TODO add your handling code here:
-        index = tblHang.getSelectedRow();
-        setFormHang(index);
-    }//GEN-LAST:event_tblHangMouseClicked
-
-    private void btnKhoiPhucLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucLoaiActionPerformed
-        // TODO add your handling code here:
-        if (index != -1) {
-            Loai loai = getFormLoai();
-            int edit = loaiDao.khoiphuc(loai);
-            if (edit > 0) {
-                System.out.println("KHoi Phuc THanh COng");
-                fillTableLoai();
-            }
-        }
-    }//GEN-LAST:event_btnKhoiPhucLoaiActionPerformed
-
-    private void btnXoaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLoaiActionPerformed
-        // TODO add your handling code here:
-        Loai loai = getFormLoai();
-        int delete = loaiDao.delete(loai);
-        if (delete > 0) {
-            System.out.println("DELETE THanh COng");
-            fillTableLoai();
-        }
-    }//GEN-LAST:event_btnXoaLoaiActionPerformed
-
-    private void btnSuaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaLoaiActionPerformed
-        // TODO add your handling code here:
-        Loai loai = getFormLoai();
-        int edit = loaiDao.update(loai);
-        if (edit > 0) {
-            System.out.println("edit THanh COng");
-            fillTableLoai();
-        }
-    }//GEN-LAST:event_btnSuaLoaiActionPerformed
-
-    private void btnThemLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLoaiActionPerformed
-        // TODO add your handling code here:
-        Loai loai = getFormLoai();
-        int addloai = loaiDao.create(loai);
-        if (addloai > 0) {
-            System.out.println("ADD THanh COng");
-            fillTableLoai();
-        }
-    }//GEN-LAST:event_btnThemLoaiActionPerformed
-
-    private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenLoaiActionPerformed
-
-    private void txtIDLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLoaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDLoaiActionPerformed
-
-    private void tblLoaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiMouseClicked
-        // TODO add your handling code here:
-        index = tblLoai.getSelectedRow();
-        setFormLoai(index);
-    }//GEN-LAST:event_tblLoaiMouseClicked
-
-    private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbbSizeActionPerformed
-
-    private void cbbViActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbViActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Vị id: " + getIDVi());
-    }//GEN-LAST:event_cbbViActionPerformed
-
-    private void cbbHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbHangActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Loai id: " + getIDHang());
-    }//GEN-LAST:event_cbbHangActionPerformed
-
-    private void txtTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrangThaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTrangThaiActionPerformed
-
-    private void cbbLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbLoaiActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Loai id: " + getIDLoai());
-    }//GEN-LAST:event_cbbLoaiActionPerformed
-
-    private void cbbTenMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTenMauActionPerformed
-        // TODO add your handling code here:
-        System.out.println("line 1298L: " + getIDMau());
-    }//GEN-LAST:event_cbbTenMauActionPerformed
-
-    private void txtTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSuaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenSuaActionPerformed
-
-    private void tblChiTietSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSuaMouseClicked
-        //        // TODO add your handling code here:
-        //        index = tblMau.getSelectedRow();
-        //        setFormMau(index);
-    }//GEN-LAST:event_tblChiTietSuaMouseClicked
-
-    private void btnXoaMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMauActionPerformed
-        //        // TODO add your handling code here:
-        //        Mau mau = getFormMau();
-        //        int edit = mauDao.delete(mau);
-        //        if (edit > 0) {
-            //            System.out.println("DELETE THanh COng");
-            //            fillTableMau();
-            //        }
-    }//GEN-LAST:event_btnXoaMauActionPerformed
-
-    private void btnSuaAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaAllActionPerformed
-        //        // TODO add your handling code here:
-        //        Mau mau = getFormMau();
-        //        int edit = mauDao.update(mau);
-        //        if (edit > 0) {
-            //            System.out.println("edit THanh COng");
-            //            fillTableMau();
-            //        }
-    }//GEN-LAST:event_btnSuaAllActionPerformed
+    }//GEN-LAST:event_txtIDChiTietSuaActionPerformed
 
     private void btnThemAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemAllActionPerformed
         // TODO add your handling code here:
@@ -2143,9 +1722,408 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         //        JOptionPane.showMessageDialog(btnThemAll, "bạn đã thêm thành công");
     }//GEN-LAST:event_btnThemAllActionPerformed
 
-    private void txtIDChiTietSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDChiTietSuaActionPerformed
+    private void btnSuaAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaAllActionPerformed
+        //        // TODO add your handling code here:
+        //        Mau mau = getFormMau();
+        //        int edit = mauDao.update(mau);
+        //        if (edit > 0) {
+            //            System.out.println("edit THanh COng");
+            //            fillTableMau();
+            //        }
+    }//GEN-LAST:event_btnSuaAllActionPerformed
+
+    private void btnXoaMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMauActionPerformed
+        //        // TODO add your handling code here:
+        //        Mau mau = getFormMau();
+        //        int edit = mauDao.delete(mau);
+        //        if (edit > 0) {
+            //            System.out.println("DELETE THanh COng");
+            //            fillTableMau();
+            //        }
+    }//GEN-LAST:event_btnXoaMauActionPerformed
+
+    private void tblChiTietSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblChiTietSuaMouseClicked
+        //        // TODO add your handling code here:
+        //        index = tblMau.getSelectedRow();
+        //        setFormMau(index);
+    }//GEN-LAST:event_tblChiTietSuaMouseClicked
+
+    private void txtTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSuaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDChiTietSuaActionPerformed
+    }//GEN-LAST:event_txtTenSuaActionPerformed
+
+    private void cbbTenMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbTenMauActionPerformed
+        // TODO add your handling code here:
+        System.out.println("line 1298L: " + getIDMau());
+    }//GEN-LAST:event_cbbTenMauActionPerformed
+
+    private void cbbLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbLoaiActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Loai id: " + getIDLoai());
+    }//GEN-LAST:event_cbbLoaiActionPerformed
+
+    private void txtTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrangThaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTrangThaiActionPerformed
+
+    private void cbbHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbHangActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Loai id: " + getIDHang());
+    }//GEN-LAST:event_cbbHangActionPerformed
+
+    private void cbbViActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbViActionPerformed
+        // TODO add your handling code here:
+        System.out.println("Vị id: " + getIDVi());
+    }//GEN-LAST:event_cbbViActionPerformed
+
+    private void cbbSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbbSizeActionPerformed
+
+    private void tblLoaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiMouseClicked
+        // TODO add your handling code here:
+        index = tblLoai.getSelectedRow();
+        setFormLoai(index);
+    }//GEN-LAST:event_tblLoaiMouseClicked
+
+    private void txtIDLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDLoaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDLoaiActionPerformed
+
+    private void txtTenLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenLoaiActionPerformed
+
+    private void btnThemLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLoaiActionPerformed
+        // TODO add your handling code here:
+        Loai loai = getFormLoai();
+        int addloai = loaiDao.create(loai);
+        if (addloai > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableLoai();
+        }
+    }//GEN-LAST:event_btnThemLoaiActionPerformed
+
+    private void btnSuaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaLoaiActionPerformed
+        // TODO add your handling code here:
+        Loai loai = getFormLoai();
+        int edit = loaiDao.update(loai);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableLoai();
+        }
+    }//GEN-LAST:event_btnSuaLoaiActionPerformed
+
+    private void btnXoaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLoaiActionPerformed
+        // TODO add your handling code here:
+        Loai loai = getFormLoai();
+        int delete = loaiDao.delete(loai);
+        if (delete > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableLoai();
+        }
+    }//GEN-LAST:event_btnXoaLoaiActionPerformed
+
+    private void btnKhoiPhucLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucLoaiActionPerformed
+        // TODO add your handling code here:
+        if (index != -1) {
+            Loai loai = getFormLoai();
+            int edit = loaiDao.khoiphuc(loai);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableLoai();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucLoaiActionPerformed
+
+    private void tblHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHangMouseClicked
+        // TODO add your handling code here:
+        index = tblHang.getSelectedRow();
+        setFormHang(index);
+    }//GEN-LAST:event_tblHangMouseClicked
+
+    private void txtIDHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDHangActionPerformed
+
+    private void btnThemHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHangActionPerformed
+        // TODO add your handling code here:
+        Hang hang = getFormHang();
+        int addHang = hangDao.create(hang);
+        if (addHang > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableHang();
+        }
+    }//GEN-LAST:event_btnThemHangActionPerformed
+
+    private void txtTenHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenHangMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenHangMouseClicked
+
+    private void txtTenHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenHangActionPerformed
+
+    private void btnSuaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaHangActionPerformed
+        // TODO add your handling code here:
+        Hang hang = getFormHang();
+        int edit = hangDao.update(hang);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableHang();
+        }
+    }//GEN-LAST:event_btnSuaHangActionPerformed
+
+    private void btnXoaHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHangActionPerformed
+        // TODO add your handling code here:
+        Hang hang = getFormHang();
+        int edit = hangDao.delete(hang);
+        if (edit > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableHang();
+        }
+    }//GEN-LAST:event_btnXoaHangActionPerformed
+
+    private void btnKhoiPhucHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucHangActionPerformed
+        // TODO add your handling code here:
+        if (index != -1) {
+            Hang hang = getFormHang();
+            int edit = hangDao.khoiphuc(hang);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableHang();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucHangActionPerformed
+
+    private void tblHinhDangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHinhDangMouseClicked
+        // TODO add your handling code here:
+        index = tblHinhDang.getSelectedRow();
+        setFormHinhDang(index);
+    }//GEN-LAST:event_tblHinhDangMouseClicked
+
+    private void txtIDHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDHinhDangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDHinhDangActionPerformed
+
+    private void btnThemHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemHinhDangActionPerformed
+        // TODO add your handling code here:
+        HinhDang hinhDang = getFormHinhDang();
+        int addHinhDang = hinhDangDao.create(hinhDang);
+        if (addHinhDang > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableHinhDang();
+        }
+    }//GEN-LAST:event_btnThemHinhDangActionPerformed
+
+    private void txtTenHinhdangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenHinhdangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenHinhdangActionPerformed
+
+    private void btnSuaHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaHinhDangActionPerformed
+        // TODO add your handling code here:
+        HinhDang hinhDang = getFormHinhDang();
+        int edit = hinhDangDao.update(hinhDang);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableHinhDang();
+        }
+    }//GEN-LAST:event_btnSuaHinhDangActionPerformed
+
+    private void btnXoaHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaHinhDangActionPerformed
+        // TODO add your handling code here:
+        HinhDang hinhDang = getFormHinhDang();
+        int edit = hinhDangDao.delete(hinhDang);
+        if (edit > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableHinhDang();
+        }
+    }//GEN-LAST:event_btnXoaHinhDangActionPerformed
+
+    private void btnKhoiPhucHinhDangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucHinhDangActionPerformed
+        // TODO add your handling code here:
+        if (index != -1) {
+            HinhDang hinhDang = getFormHinhDang();
+            int edit = hinhDangDao.khoiphuc(hinhDang);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableHinhDang();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucHinhDangActionPerformed
+
+    private void tblViSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblViSuaMouseClicked
+        // TODO add your handling code here:
+        index = tblViSua.getSelectedRow();
+        setFormVi(index);
+    }//GEN-LAST:event_tblViSuaMouseClicked
+
+    private void txtIDViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDViSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDViSuaActionPerformed
+
+    private void txtTenViSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTenViSuaMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenViSuaMouseClicked
+
+    private void txtTenViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenViSuaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenViSuaActionPerformed
+
+    private void btnThemVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemVisuaActionPerformed
+        // TODO add your handling code here:
+        Vi vi = getFormVi();
+        int addVi = viDao.create(vi);
+        if (addVi > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableVi();
+        }
+    }//GEN-LAST:event_btnThemVisuaActionPerformed
+
+    private void btnSuaVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaVisuaActionPerformed
+        // TODO add your handling code here:
+        Vi vi = getFormVi();
+        int edit = viDao.update(vi);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableVi();
+        }
+    }//GEN-LAST:event_btnSuaVisuaActionPerformed
+
+    private void btnXoaViSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaViSuaActionPerformed
+        // TODO add your handling code here:
+        Vi vi = getFormVi();
+        int edit = viDao.delete(vi);
+        if (edit > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableVi();
+        }
+    }//GEN-LAST:event_btnXoaViSuaActionPerformed
+
+    private void btnKhoiPhucVisuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucVisuaActionPerformed
+        // TODO add your handling code here:
+        if (index != -1) {
+            Vi vi = getFormVi();
+            int edit = viDao.khoiphuc(vi);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableVi();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucVisuaActionPerformed
+
+    private void tblTenSuaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTenSuaMouseClicked
+        // TODO add your handling code here:
+        index = tblTenSua.getSelectedRow();
+        setFormTenSua(index);
+    }//GEN-LAST:event_tblTenSuaMouseClicked
+
+    private void txtIDTenSua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDTenSua1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDTenSua1ActionPerformed
+
+    private void btnThemsuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemsuaActionPerformed
+        // TODO add your handling code here:
+        TenSua tenSua = getFormTenSua();
+        int addTenSua = tensuaDao.create(tenSua);
+        if (addTenSua > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableTenSua();
+        }
+    }//GEN-LAST:event_btnThemsuaActionPerformed
+
+    private void txtTenSua1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenSua1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenSua1ActionPerformed
+
+    private void btnSuasuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuasuaActionPerformed
+        // TODO add your handling code here:
+        TenSua tenSua = getFormTenSua();
+        int edit = tensuaDao.update(tenSua);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableTenSua();
+        }
+    }//GEN-LAST:event_btnSuasuaActionPerformed
+
+    private void btnXoasuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoasuaActionPerformed
+        // TODO add your handling code here:
+        TenSua tenSua = getFormTenSua();
+        int edit = tensuaDao.delete(tenSua);
+        if (edit > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableTenSua();
+        }
+    }//GEN-LAST:event_btnXoasuaActionPerformed
+
+    private void btnKhoiPhucTenSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucTenSuaActionPerformed
+        // TODO add your handling code here:
+        if (index != -1) {
+            TenSua tenSua = getFormTenSua();
+            int edit = tensuaDao.khoiphuc(tenSua);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableTenSua();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucTenSuaActionPerformed
+
+    private void tblMauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMauMouseClicked
+        // TODO add your handling code here:
+        index = tblMau.getSelectedRow();
+        setFormMau(index);
+    }//GEN-LAST:event_tblMauMouseClicked
+
+    private void txtIDMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDMauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDMauActionPerformed
+
+    private void btnThemMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMauActionPerformed
+        // TODO add your handling code here:
+        Mau mau = getFormMau();
+        int addMau = mauDao.create(mau);
+        if (addMau > 0) {
+            System.out.println("ADD THanh COng");
+            fillTableMau();
+        }
+    }//GEN-LAST:event_btnThemMauActionPerformed
+
+    private void txtTenMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenMauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenMauActionPerformed
+
+    private void btnSuaMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaMauActionPerformed
+        // TODO add your handling code here:
+        Mau mau = getFormMau();
+        int edit = mauDao.update(mau);
+        if (edit > 0) {
+            System.out.println("edit THanh COng");
+            fillTableMau();
+        }
+    }//GEN-LAST:event_btnSuaMauActionPerformed
+
+    private void btnXoaMauaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaMauaActionPerformed
+        // TODO add your handling code here:
+        Mau mau = getFormMau();
+        int edit = mauDao.delete(mau);
+        if (edit > 0) {
+            System.out.println("DELETE THanh COng");
+            fillTableMau();
+        }
+    }//GEN-LAST:event_btnXoaMauaActionPerformed
+
+    private void btnKhoiPhucMau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhoiPhucMau1ActionPerformed
+        // khoi phuc
+
+        if (index != -1) {
+            Mau mau = getFormMau();
+            int edit = mauDao.khoiphuc(mau);
+            if (edit > 0) {
+                System.out.println("KHoi Phuc THanh COng");
+                fillTableMau();
+            }
+        }
+    }//GEN-LAST:event_btnKhoiPhucMau1ActionPerformed
 
     private void tblSizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSizeMouseClicked
         // TODO add your handling code here:
@@ -2177,43 +2155,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnKhoiPhucSizeActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThuocTinhSua.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ThuocTinhSua().setVisible(true);
-                } catch (Exception e) {
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BangHang;
@@ -2277,7 +2218,6 @@ public class ThuocTinhSua extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel13;
