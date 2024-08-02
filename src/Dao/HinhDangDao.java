@@ -44,4 +44,56 @@ public class HinhDangDao {
         }
         return hinhDangs;
     }
+    public int create(HinhDang hinhDang){
+        int rowedit = 0;
+        String sql = "INSERT INTO HinhDang (HinhDang, TrangThai) VALUES \n"
+                + "(?,1)";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, hinhDang.getHinhDang());
+            rowedit = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowedit;
+    }
+    public int update( HinhDang hinhDang){
+        int editHD = 0;
+        String sql = "UPDATE HinhDang set HinhDang = ? WHERE HinhDang_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, hinhDang.getHinhDang());
+            preparedStatement.setInt(2, hinhDang.getId());
+            editHD = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return editHD;
+    }
+    public int delete(HinhDang hinhDang){
+        int xoahd = 0;
+        String sql = "UPDATE HinhDang set trangthai = ? WHERE HinhDang_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setInt(2, hinhDang.getId());
+            xoahd = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return xoahd;
+    }
+    public int khoiphuc(HinhDang hinhDang) {
+        int khoiphuc = 0;
+        String sql = "UPDATE HinhDang set trangthai = ? WHERE HinhDang_ID = ?";
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, 1);
+            preparedStatement.setInt(2, hinhDang.getId());
+            khoiphuc = preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return khoiphuc;
+    }
 }

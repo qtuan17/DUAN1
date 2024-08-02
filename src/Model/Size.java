@@ -10,16 +10,16 @@ package Model;
  */
 public class Size {
     private int id;
-    private String tenSize;
-    private int trangThai;
+    private String TenSize;
+    private int TrangThai;
 
     public Size() {
     }
 
-    public Size(int id, String tenSize, int trangThai) {
+    public Size(int id, String TenSize, int TrangThai) {
         this.id = id;
-        this.tenSize = tenSize;
-        this.trangThai = trangThai;
+        this.TenSize = TenSize;
+        this.TrangThai = TrangThai;
     }
 
     public int getId() {
@@ -31,19 +31,19 @@ public class Size {
     }
 
     public String getTenSize() {
-        return tenSize;
+        return TenSize;
     }
 
-    public void setTenSize(String tenSize) {
-        this.tenSize = tenSize;
+    public void setTenSize(String TenSize) {
+        this.TenSize = TenSize;
     }
 
     public int getTrangThai() {
-        return trangThai;
+        return TrangThai;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
     }
     
     

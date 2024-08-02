@@ -11,6 +11,7 @@ import java.util.Date;
  * @author tuanb
  */
 public class Chitietview {
+
     private int id;
     private String TenSua;
     private String TenMau;
@@ -18,15 +19,15 @@ public class Chitietview {
     private String TenHang;
     private String TenVi;
     private String HinhDang;
-    private String TenSize;
     private int Gia;
+    private int SoLuong;
     private Date HanSuDung;
     private int TrangThai;
 
     public Chitietview() {
     }
 
-    public Chitietview(int id, String TenSua, String TenMau, String TenLoai, String TenHang, String TenVi, String HinhDang, String TenSize, int TrangThai) {
+    public Chitietview(int id, String TenSua, String TenMau, String TenLoai, String TenHang, String TenVi, String HinhDang, int Gia, int SoLuong, Date HanSuDung, int TrangThai) {
         this.id = id;
         this.TenSua = TenSua;
         this.TenMau = TenMau;
@@ -34,7 +35,9 @@ public class Chitietview {
         this.TenHang = TenHang;
         this.TenVi = TenVi;
         this.HinhDang = HinhDang;
-        this.TenSize = TenSize;
+        this.Gia = Gia;
+        this.SoLuong = SoLuong;
+        this.HanSuDung = HanSuDung;
         this.TrangThai = TrangThai;
     }
 
@@ -94,12 +97,20 @@ public class Chitietview {
         this.HinhDang = HinhDang;
     }
 
-    public String getTenSize() {
-        return TenSize;
+    public int getGia() {
+        return Gia;
     }
 
-    public void setTenSize(String TenSize) {
-        this.TenSize = TenSize;
+    public void setGia(int Gia) {
+        this.Gia = Gia;
+    }
+
+    public Date getHanSuDung() {
+        return HanSuDung;
+    }
+
+    public void setHanSuDung(Date HanSuDung) {
+        this.HanSuDung = HanSuDung;
     }
 
     public int getTrangThai() {
@@ -109,6 +120,13 @@ public class Chitietview {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
-    
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
 }
