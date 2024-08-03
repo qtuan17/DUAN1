@@ -82,4 +82,55 @@ public class ChiTietSuaDao {
         }
         return themsua;
     }
+
+    public Chitietview getById(int suaId) {
+        String sql = "select a.Sua_ID,c.TenSua,d.TenMau,b.TenLoai,f.TenHang,g.TenVi,h.HinhDang,a.TrangThai,a.Gia,a.HanSuDung,a.SoLuong from ChiTietSua a\n"
+                + "INNER JOIN Loai b on a.Loai_ID = b.Loai_ID\n"
+                + "INNER JOIN TenSua c on a.TenSua_ID = c.TenSua_ID\n"
+                + "INNER JOIN Mau d on a.Mau_ID = d.Mau_ID\n"
+                + "INNER JOIN Hang f on a.Hang_ID = f.Hang_ID\n"
+                + "INNER JOIN Vi g on a.Vi_ID = g.Vi_ID\n"
+                + "INNER JOIN HinhDang h on a.HinhDang_ID = h.HinhDang_ID\n where a.Sua_ID = ?";;
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, suaId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Chitietview chiTietSua = new Chitietview(
+                        resultSet.getInt("Sua_ID"),
+                        resultSet.getString("TenSua"),
+                        resultSet.getString("TenMau"),
+                        resultSet.getString("TenHang"),
+                        resultSet.getString("TenLoai"),
+                        resultSet.getString("TenVi"),
+                        resultSet.getString("HinhDang"),
+                        resultSet.getInt("Gia"),
+                        resultSet.getInt("SoLuong"),
+                        resultSet.getDate("HanSuDung"),
+                        resultSet.getInt("TrangThai")
+                );
+                return chiTietSua;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+        
+    public boolean checkConHang(int idSanPham) {
+        String query = "SELECT * FROM ChiTietSua WHERE Sua_ID = ? and SoLuong > 0";
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(query);
+            pstmt.setInt(1, idSanPham);
+            ResultSet result = pstmt.executeQuery();
+            while (result.next()) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("looix check gio hang: " + e);
+            return false;
+        }
+    }
 };
