@@ -6,6 +6,7 @@ package View;
 
 import javax.swing.JPanel;
 import View.SanPhamPanel;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,6 +21,8 @@ public class TrangChuJFrame extends javax.swing.JFrame {
      */
     public TrangChuJFrame() {
         initComponents();
+        setLocationRelativeTo(this);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**

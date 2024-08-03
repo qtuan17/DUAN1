@@ -24,6 +24,78 @@ public class HoaDonDao {
         connection = util.DBContext.getConnection();
     }
 
+    public List<HoaDon> getAll() throws SQLException {
+        List<HoaDon> hoaDons = new ArrayList<>();
+        String query = "SELECT * FROM HoaDon WHERE TrangThai = 1 or TrangThai = 2";
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon(
+                        rs.getInt("HoaDon_ID"),
+                        rs.getInt("NguoiDung_ID"),
+                        rs.getString("TenKH"),
+                        rs.getString("Sdt"),
+                        rs.getString("DiaChi"),
+                        rs.getDate("NgayTao"),
+                        rs.getDate("NgayThanhToan"),
+                        rs.getInt("PTTT"),
+                        rs.getInt("TongTien"),
+                        rs.getInt("TrangThai")
+                );
+                hoaDon.setHoaDonChiTietList(getHoaDonChiTietByHoaDonId(hoaDon.getHoaDonId()));
+                hoaDons.add(hoaDon);
+            }
+        }
+        return hoaDons;
+    }
+
+    public List<HoaDon> getThanhCong() throws SQLException {
+        List<HoaDon> hoaDons = new ArrayList<>();
+        String query = "SELECT * FROM HoaDon WHERE TrangThai = 1 or TrangThai = 2";
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon(
+                        rs.getInt("HoaDon_ID"),
+                        rs.getInt("NguoiDung_ID"),
+                        rs.getString("TenKH"),
+                        rs.getString("Sdt"),
+                        rs.getString("DiaChi"),
+                        rs.getDate("NgayTao"),
+                        rs.getDate("NgayThanhToan"),
+                        rs.getInt("PTTT"),
+                        rs.getInt("TongTien"),
+                        rs.getInt("TrangThai")
+                );
+                hoaDon.setHoaDonChiTietList(getHoaDonChiTietByHoaDonId(hoaDon.getHoaDonId()));
+                hoaDons.add(hoaDon);
+            }
+        }
+        return hoaDons;
+    }
+
+    public List<HoaDon> getChuaThanhCong() throws SQLException {
+        List<HoaDon> hoaDons = new ArrayList<>();
+        String query = "SELECT * FROM HoaDon WHERE TrangThai = 0";
+        try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                HoaDon hoaDon = new HoaDon(
+                        rs.getInt("HoaDon_ID"),
+                        rs.getInt("NguoiDung_ID"),
+                        rs.getString("TenKH"),
+                        rs.getString("Sdt"),
+                        rs.getString("DiaChi"),
+                        rs.getDate("NgayTao"),
+                        rs.getDate("NgayThanhToan"),
+                        rs.getInt("PTTT"),
+                        rs.getInt("TongTien"),
+                        rs.getInt("TrangThai")
+                );
+                hoaDon.setHoaDonChiTietList(getHoaDonChiTietByHoaDonId(hoaDon.getHoaDonId()));
+                hoaDons.add(hoaDon);
+            }
+        }
+        return hoaDons;
+    }
+
     public List<HoaDon> getAllHoaDon() throws SQLException {
         List<HoaDon> hoaDons = new ArrayList<>();
         String query = "SELECT * FROM HoaDon WHERE TrangThai = 0";
@@ -76,31 +148,35 @@ public class HoaDonDao {
         return hoaDon;
     }
 
-    public void addEmptyHoaDon() {
+    public void addEmptyHoaDon(int PTTT, int TongTien) {
         try {
             long millis = System.currentTimeMillis();
-            String query = "INSERT INTO HoaDon (NguoiDung_ID, NgayTao, NgayThanhToan, TrangThai) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO HoaDon (NguoiDung_ID, NgayTao, NgayThanhToan, PTTT , TongTien, TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(query);
             pstmt.setInt(1, 1);
             pstmt.setDate(2, new java.sql.Date(millis));
             pstmt.setDate(3, new java.sql.Date(millis));
-            pstmt.setInt(4, 0);
+            pstmt.setInt(4, PTTT);
+            pstmt.setInt(5, TongTien);
+            pstmt.setInt(6, 0);
             pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("Loi tao hoa don" + e);
         }
     }
 
-    public void addHoaDon(String tenKH, String sdt, String diaChi) {
+    public void addHoaDon(String tenKH, String sdt, String diaChi, int PTTT, int TongTien) {
         long millis = System.currentTimeMillis();
-        String query = "INSERT INTO HoaDon (NguoiDung_ID, TenKH, sdt, DiaChi, NgayTao, TrangThai) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO HoaDon (NguoiDung_ID, TenKH, sdt, DiaChi, NgayTao, PTTT, TongTien, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
             pstmt.setInt(1, 1);
             pstmt.setString(2, tenKH);
             pstmt.setString(3, sdt);
             pstmt.setString(4, diaChi);
             pstmt.setDate(5, new java.sql.Date(millis));
-            pstmt.setInt(6, 0);
+            pstmt.setInt(6, PTTT);
+            pstmt.setInt(7, TongTien);
+            pstmt.setInt(8, 0);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Loi tao hoa don" + e);
@@ -141,8 +217,18 @@ public class HoaDonDao {
     public void updateHoaDon(int hoaDonId, int tongTien) {
         String query = "UPDATE HoaDon SET TrangThai = 1, TongTien = ? where HoaDon_ID = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-//            pstmt.setInt(1, tongTien);
+            pstmt.setInt(1, tongTien);
             pstmt.setInt(2, hoaDonId);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            System.out.println("lỗi update hóa đơn: " + e);
+        }
+    }
+
+    public void huyHoaDon(int hoaDonId) {
+        String query = "UPDATE HoaDon SET TrangThai = 2 where HoaDon_ID = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+            pstmt.setInt(1, hoaDonId);
             pstmt.executeUpdate();
         } catch (Exception e) {
             System.out.println("lỗi update hóa đơn: " + e);
