@@ -29,6 +29,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
         this.openLogin();
     }
     
+    
     public TrangChuJFrame() {
         initComponents();
         setLocationRelativeTo(this);
@@ -41,6 +42,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
         void openLogin(){
         new DangNhapJDialog(this, true).setVisible(true);
     }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -278,6 +280,10 @@ public class TrangChuJFrame extends javax.swing.JFrame {
 
     private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
+        this.dispose();
+        // Mở lại cửa sổ đăng nhập
+        DangNhapJDialog DN = new DangNhapJDialog(this, rootPaneCheckingEnabled);
+        DN.setVisible(true);
     }//GEN-LAST:event_btnSignoutActionPerformed
 
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
