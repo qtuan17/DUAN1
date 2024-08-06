@@ -12,10 +12,42 @@ import java.util.Set;
  */
 
 public class ChucVu {
-    private int id;
+    private int idCV;
     private String TenCV;
     private int TrangThai;
-    
-    
+
+    public ChucVu() {
+    }
+
+    public ChucVu(int idCV, String TenCV, int TrangThai) {
+        this.idCV = idCV;
+        this.TenCV = TenCV;
+        this.TrangThai = TrangThai;
+    }
+
+    public int getIdCV() {
+        return idCV;
+    }
+
+    public void setIdCV(int idCV) {
+        this.idCV = idCV;
+    }
+
+    public String getTenCV() {
+        return TenCV;
+    }
+
+    public void setTenCV(String TenCV) {
+        this.TenCV = TenCV;
+    }
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
+
     
 }

@@ -8,6 +8,7 @@ import Model.NguoiDung;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,27 +48,24 @@ public class NguoiDungDao {
         }
         return lstNguoiDung;
     }
-
-//    public int create(ChiTietSua chiTietSua) {
-//        int themsua = 0;
-//        String sql = "INSERT INTO ChiTietSua (Loai_ID, TenSua_ID,Hang_ID,Vi_ID,Mau_ID,HinhDang_ID,Gia, HanSuDung,SoLuong,TrangThai) VALUES \n"
-//                + "(?,?,?,?,?,?,?,?,?,?)";
-//        try {
-//            preparedStatement = connection.prepareStatement(sql);
-//            preparedStatement.setInt(2, chiTietSua.getTenSua());
-//            preparedStatement.setInt(5, chiTietSua.getTenMau());
-//            preparedStatement.setInt(1, chiTietSua.getTenLoai());
-//            preparedStatement.setInt(3, chiTietSua.getTenHang());
-//            preparedStatement.setInt(4, chiTietSua.getTenVi());
-//            preparedStatement.setInt(6, chiTietSua.getHinhDang());
-//            preparedStatement.setInt(7, chiTietSua.getGia());
-//            preparedStatement.setDate(8, chiTietSua.getHanSuDung());
-//            preparedStatement.setInt(9, chiTietSua.getSoLuong());
-//            preparedStatement.setInt(10, chiTietSua.getTrangThai());
-//            themsua = preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return themsua;
-//    }
+    public int create(NguoiDung nguoiDung){
+        int themnv = 0;
+        String sql = "INSERT INTO NguoiDung (ChucVu_ID, TaiKhoan, MatKhau, HoTen, NgaySinh, GioiTinh, Email, SDT, CCCD) VALUES \n"
+                + "(?,?,?,?,?,?,?,?,?)";
+        try {
+            preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setInt(1, nguoiDung.getIdChucVu());
+            preparedStatement.setString(2, nguoiDung.getTaiKhoan());
+            preparedStatement.setString(3, nguoiDung.getMatKhau());
+            preparedStatement.setString(4, nguoiDung.getHoTen());
+            preparedStatement.setDate(5, (Date) nguoiDung.getNgaySinh());
+            preparedStatement.setString(6, nguoiDung.getGioiTinh());
+            preparedStatement.setString(7, nguoiDung.getEmail());
+            preparedStatement.setInt(8, nguoiDung.getSDT());
+            preparedStatement.setInt(9, nguoiDung.getCCCD());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return themnv;
+    }
 }
