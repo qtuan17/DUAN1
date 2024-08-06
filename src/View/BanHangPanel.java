@@ -8,7 +8,7 @@ import Dao.ChiTietSuaDao;
 import Dao.HoaDonDao;
 import Model.HoaDon;
 import Model.HoaDonChiTiet;
-import ViewModel.Chitietview;
+import entity.Chitietview;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

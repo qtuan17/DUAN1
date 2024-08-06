@@ -10,7 +10,7 @@ package Dao;
  */
 // test push
 import Model.ChiTietSua;
-import ViewModel.Chitietview;
+import entity.Chitietview;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Connection;

@@ -7,6 +7,7 @@ package View;
 import javax.swing.JPanel;
 import View.SanPhamPanel;
 import javax.swing.JFrame;
+import util.XImage;
 
 /**
  *
@@ -19,12 +20,27 @@ public class TrangChuJFrame extends javax.swing.JFrame {
     /**
      * Creates new form TrangChuJFrame
      */
+    void init(){
+        setSize(1000, 600);
+        setIconImage(XImage.getAppIcon());
+    //    setLocationRelativeTo(null);
+        setTitle("HỆ THỐNG QUẢN LÍ BÁN SỮA");
+        this.openWelcome();
+        this.openLogin();
+    }
+    
     public TrangChuJFrame() {
         initComponents();
         setLocationRelativeTo(this);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        init();
     }
-
+    void openWelcome(){
+        new ChaoJDialog(this, true).setVisible(true);
+    }
+        void openLogin(){
+        new DangNhapJDialog(this, true).setVisible(true);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

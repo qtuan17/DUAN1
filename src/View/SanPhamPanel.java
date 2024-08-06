@@ -19,7 +19,7 @@ import Model.Mau;
 import Model.Size;
 import Model.TenSua;
 import Model.Vi;
-import ViewModel.Chitietview;
+import entity.Chitietview;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
