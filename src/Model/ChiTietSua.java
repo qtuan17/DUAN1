@@ -13,21 +13,21 @@ import java.sql.Date;
 public class ChiTietSua {
 
     private int id;
-    private String TenSua;
+    private int TenSua;
     private int TenMau;
     private int TenLoai;
     private int TenHang;
     private int TenVi;
     private int HinhDang;
-    private int TenSize;
     private int TrangThai;
     private int Gia;
+    private int soLuong;
     private Date HanSuDung;
 
     public ChiTietSua() {
     }
 
-    public ChiTietSua(int id, String TenSua, int TenMau, int TenLoai, int TenHang, int TenVi, int HinhDang, int TenSize, int TrangThai, int Gia, Date HanSuDung) {
+    public ChiTietSua(int id, int TenSua, int TenMau, int TenLoai, int TenHang, int TenVi, int HinhDang, int TrangThai, int Gia, int soLuong, Date HanSuDung) {
         this.id = id;
         this.TenSua = TenSua;
         this.TenMau = TenMau;
@@ -35,9 +35,9 @@ public class ChiTietSua {
         this.TenHang = TenHang;
         this.TenVi = TenVi;
         this.HinhDang = HinhDang;
-        this.TenSize = TenSize;
         this.TrangThai = TrangThai;
         this.Gia = Gia;
+        this.soLuong = soLuong;
         this.HanSuDung = HanSuDung;
     }
 
@@ -49,11 +49,11 @@ public class ChiTietSua {
         this.id = id;
     }
 
-    public String getTenSua() {
+    public int getTenSua() {
         return TenSua;
     }
 
-    public void setTenSua(String TenSua) {
+    public void setTenSua(int TenSua) {
         this.TenSua = TenSua;
     }
 
@@ -97,14 +97,6 @@ public class ChiTietSua {
         this.HinhDang = HinhDang;
     }
 
-    public int getTenSize() {
-        return TenSize;
-    }
-
-    public void setTenSize(int TenSize) {
-        this.TenSize = TenSize;
-    }
-
     public int getTrangThai() {
         return TrangThai;
     }
@@ -119,6 +111,14 @@ public class ChiTietSua {
 
     public void setGia(int Gia) {
         this.Gia = Gia;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public Date getHanSuDung() {

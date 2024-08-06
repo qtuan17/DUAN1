@@ -63,25 +63,39 @@ public class ChiTietSuaDao {
 
     public int create(ChiTietSua chiTietSua) {
         int themsua = 0;
-        String sql = "INSERT INTO ChiTietSua (TenSua_ID,Mau_ID,Loai_ID,Hang_ID,Vi_ID,HinhDang_ID,Gia, HanSuDung, TrangThai) VALUES \n"
-                + "(?,?,?,?,?,?,?,?,?,?,1)";
+        String sql = "INSERT INTO ChiTietSua (Loai_ID, TenSua_ID,Hang_ID,Vi_ID,Mau_ID,HinhDang_ID,Gia, HanSuDung,SoLuong,TrangThai) VALUES \n"
+                + "(?,?,?,?,?,?,?,?,?,?)";
         try {
             preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setString(1, chiTietSua.getTenSua());
-            preparedStatement.setInt(2, chiTietSua.getTenMau());
-            preparedStatement.setInt(3, chiTietSua.getTenLoai());
-            preparedStatement.setInt(4, chiTietSua.getTenHang());
-            preparedStatement.setInt(5, chiTietSua.getTenVi());
+            preparedStatement.setInt(2, chiTietSua.getTenSua());
+            preparedStatement.setInt(5, chiTietSua.getTenMau());
+            preparedStatement.setInt(1, chiTietSua.getTenLoai());
+            preparedStatement.setInt(3, chiTietSua.getTenHang());
+            preparedStatement.setInt(4, chiTietSua.getTenVi());
             preparedStatement.setInt(6, chiTietSua.getHinhDang());
-            preparedStatement.setInt(8, chiTietSua.getGia());
-            preparedStatement.setDate(9, chiTietSua.getHanSuDung());
-            preparedStatement.setInt(8, chiTietSua.getTrangThai());
+            preparedStatement.setInt(7, chiTietSua.getGia());
+            preparedStatement.setDate(8, chiTietSua.getHanSuDung());
+            preparedStatement.setInt(9, chiTietSua.getSoLuong());
+            preparedStatement.setInt(10, chiTietSua.getTrangThai());
             themsua = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return themsua;
     }
+//    public int delete(ChiTietSua chiTietSua){
+//        int xoasua = 0;
+//        String sql = "UPDATE ChiTietSua set trangthai = ? WHERE id = ?";
+//        try {
+//            preparedStatement = connection.prepareStatement(sql);
+//            preparedStatement.setInt(1, 0);
+//            preparedStatement.setInt(2, chiTietSua.getId());
+//            xoasua = preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return xoasua;
+//    }
 
     public Chitietview getById(int suaId) {
         String sql = "select a.Sua_ID,c.TenSua,d.TenMau,b.TenLoai,f.TenHang,g.TenVi,h.HinhDang,a.TrangThai,a.Gia,a.HanSuDung,a.SoLuong from ChiTietSua a\n"

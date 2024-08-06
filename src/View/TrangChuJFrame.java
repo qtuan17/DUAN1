@@ -232,8 +232,11 @@ public class TrangChuJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNVActionPerformed
-        // TODO add your handling code here:
-//        showPanel(new PanelNV());
+         
+        try {
+            showPanel(new NhanVienPanel(this, rootPaneCheckingEnabled));
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_btnNVActionPerformed
 
     private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
@@ -262,6 +265,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
 
     private void btnSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignoutActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnSignoutActionPerformed
 
     private void btnChangePassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePassActionPerformed
