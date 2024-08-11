@@ -4,9 +4,14 @@
  */
 package View;
 
+import Dao.NguoiDungDao;
+import Model.NguoiDung;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import util.Auth;
+import util.MsgBox;
 import util.XImage;
 
 /**
@@ -14,7 +19,13 @@ import util.XImage;
  * @author This PC
  */
 public class DangNhapJDialog extends javax.swing.JDialog {
-
+    
+    private NguoiDungDao ndDao;
+    void init(){
+        setIconImage(XImage.getAppIcon());
+        setLocationRelativeTo(null);
+        setTitle("ĐĂNG NHẬP HỆ THỐNG QUẢN LÍ BÁN SỮA");
+    }
     /**
      * Creates new form DangNhapJDialog
      */
@@ -22,12 +33,35 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         init();
+        
+        try {
+            ndDao = new NguoiDungDao();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-     void init(){
-        setIconImage(XImage.getAppIcon());
-    //    setLocationRelativeTo(null);
-        setTitle("ĐĂNG NHẬP HỆ THỐNG QUẢN LÍ BÁN SỮA");
-
+    void dangNhap() {
+        String taiKhoan = txtTenDangNhap.getText();
+        String matKhau = new String(txtMatKhau.getPassword());
+        
+        if(taiKhoan.isEmpty()){
+            MsgBox.alert(this, "Ten dang nhap khong duoc de trong!");
+            return;
+        } 
+        if(matKhau.isEmpty()){
+            MsgBox.alert(this, "Mat khau khong duoc de trong!");
+        }
+        NguoiDung nd = ndDao.selectByUserName(taiKhoan);
+        if (nd == null) {
+            MsgBox.alert(this, "Sai ten dang nhap!");
+        } else if (!matKhau.equals(nd.getMatKhau())) {
+            MsgBox.alert(this, "Sai mat khau!");
+        } else {
+            Auth.user = nd;
+            TrangChuJFrame trangChuJFrame = new TrangChuJFrame();
+            trangChuJFrame.setVisible(true);
+            this.dispose();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +74,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtTenDangNhap = new javax.swing.JTextField();
+        txtMatKhau = new javax.swing.JPasswordField();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -75,10 +109,10 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(127, 127, 127)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 146, Short.MAX_VALUE)
@@ -92,8 +126,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -104,11 +138,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap)
@@ -177,7 +211,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtMatKhau;
+    private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables
 }

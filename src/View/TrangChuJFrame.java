@@ -6,24 +6,21 @@ package View;
 
 import javax.swing.JPanel;
 import View.SanPhamPanel;
+import java.awt.Panel;
 import javax.swing.JFrame;
 import util.XImage;
 
-/**
- *
- * @author tuanb
- */
+
+
 public class TrangChuJFrame extends javax.swing.JFrame {
 
     private JPanel childPanel;
 
-    /**
-     * Creates new form TrangChuJFrame
-     */
+    
     void init(){
         setSize(1000, 600);
         setIconImage(XImage.getAppIcon());
-    //    setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setTitle("HỆ THỐNG QUẢN LÍ BÁN SỮA");
         this.openWelcome();
         this.openLogin();
@@ -251,7 +248,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
 
     private void btnNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNVActionPerformed
         // TODO add your handling code here:
-//        showPanel(new PanelNV());
+        showPanel(new QLNVJPanel());
     }//GEN-LAST:event_btnNVActionPerformed
 
     private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
@@ -265,7 +262,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
 
     private void btnBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBHActionPerformed
         // TODO add your handling code here:
-//        showPanel(new BanHangJPanel());
+        showPanel(new BanHangPanel());
     }//GEN-LAST:event_btnBHActionPerformed
 
     private void btnHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHDActionPerformed
