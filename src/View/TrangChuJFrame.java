@@ -7,6 +7,7 @@ package View;
 import javax.swing.JPanel;
 import View.SanPhamPanel;
 import javax.swing.JFrame;
+import util.Auth;
 
 /**
  *
@@ -21,6 +22,7 @@ public class TrangChuJFrame extends javax.swing.JFrame {
      */
     public TrangChuJFrame() {
         initComponents();
+        setTitle("HỆ THỐNG QUẢN LÍ BÁN SỮA");
         setLocationRelativeTo(this);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -158,6 +160,11 @@ public class TrangChuJFrame extends javax.swing.JFrame {
         btnSignout.setForeground(new java.awt.Color(255, 255, 255));
         btnSignout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Log out.png"))); // NOI18N
         btnSignout.setText("Đăng xuất");
+        btnSignout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSignoutMouseClicked(evt);
+            }
+        });
         btnSignout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSignoutActionPerformed(evt);
@@ -299,6 +306,14 @@ public class TrangChuJFrame extends javax.swing.JFrame {
             System.out.println("Bán sữa");
         }
     }//GEN-LAST:event_btnBHMouseClicked
+
+    private void btnSignoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSignoutMouseClicked
+        // TODO add your handling code here:
+        Auth.clear();
+        this.dispose();
+        DangNhapJDialog DN = new DangNhapJDialog(this, rootPaneCheckingEnabled);
+        DN.setVisible(true);
+    }//GEN-LAST:event_btnSignoutMouseClicked
     private void showPanel(JPanel panel) {
         childPanel = panel;
         panelMain.removeAll();

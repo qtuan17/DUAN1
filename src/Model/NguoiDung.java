@@ -12,32 +12,17 @@ import java.util.Date;
  * @author tuanb
  */
 public class NguoiDung {
+
     private int idNguoiDung;
     private int idChucVu;
-     private String TaiKhoan;
-     private String MatKhau;
-     private String HoTen;
-     private Date NgaySinh;
-     private String GioiTinh;
-     private String Email;
-     private int SDT;
-     private int CCCD;
-
-    public NguoiDung() {
-    }
-
-    public NguoiDung(int idNguoiDung, int idChucVu, String TaiKhoan, String MatKhau, String HoTen, Date NgaySinh, String GioiTinh, String Email, int SDT, int CCCD) {
-        this.idNguoiDung = idNguoiDung;
-        this.idChucVu = idChucVu;
-        this.TaiKhoan = TaiKhoan;
-        this.MatKhau = MatKhau;
-        this.HoTen = HoTen;
-        this.NgaySinh = NgaySinh;
-        this.GioiTinh = GioiTinh;
-        this.Email = Email;
-        this.SDT = SDT;
-        this.CCCD = CCCD;
-    }
+    private String TaiKhoan;
+    private String MatKhau;
+    private String HoTen;
+    private Date NgaySinh;
+    private String GioiTinh;
+    private String Email;
+    private int SDT;
+    private int CCCD;
 
     public int getIdNguoiDung() {
         return idNguoiDung;
@@ -119,7 +104,20 @@ public class NguoiDung {
         this.CCCD = CCCD;
     }
 
-    
+    public NguoiDung(int idNguoiDung, int idChucVu, String TaiKhoan, String MatKhau, String HoTen, Date NgaySinh, String GioiTinh, String Email, int SDT, int CCCD) {
+        this.idNguoiDung = idNguoiDung;
+        this.idChucVu = idChucVu;
+        this.TaiKhoan = TaiKhoan;
+        this.MatKhau = MatKhau;
+        this.HoTen = HoTen;
+        this.NgaySinh = NgaySinh;
+        this.GioiTinh = GioiTinh;
+        this.Email = Email;
+        this.SDT = SDT;
+        this.CCCD = CCCD;
+    }
 
-    
+    public NguoiDung() {
+    }
+
 }

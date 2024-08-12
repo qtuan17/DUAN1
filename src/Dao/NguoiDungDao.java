@@ -12,8 +12,10 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import util.DBContext;
 
 public class NguoiDungDao {
+
     public PreparedStatement preparedStatement = null;
     public Connection connection = null;
     public ResultSet resultSet = null;
@@ -39,7 +41,7 @@ public class NguoiDungDao {
                         resultSet.getString("GioiTinh"),
                         resultSet.getString("Email"),
                         resultSet.getInt("SDT"),
-                        resultSet.getInt("CCCD")       
+                        resultSet.getInt("CCCD")
                 );
                 lstNguoiDung.add(nguoiDung);
             }
@@ -48,7 +50,8 @@ public class NguoiDungDao {
         }
         return lstNguoiDung;
     }
-    public int create(NguoiDung nguoiDung){
+
+    public int create(NguoiDung nguoiDung) {
         int themnv = 0;
         String sql = "INSERT INTO NguoiDung (ChucVu_ID, TaiKhoan, MatKhau, HoTen, NgaySinh, GioiTinh, Email, SDT, CCCD) VALUES \n"
                 + "(?,?,?,?,?,?,?,?,?)";
@@ -67,5 +70,54 @@ public class NguoiDungDao {
             e.printStackTrace();
         }
         return themnv;
+    }
+
+    public NguoiDung selectByUserName(String TaiKhoan) {
+        String sql = "SELECT * FROM NguoiDung WHERE TaiKhoan = ?";
+        List<NguoiDung> lnv = selectBySql(sql, TaiKhoan);
+        return lnv.size() > 0 ? lnv.get(0) : null;
+    }
+
+    
+
+    public List<NguoiDung> selectBySql(String sql, Object... args) {
+        List<NguoiDung> lnv = new ArrayList<>();
+        try {
+            preparedStatement = connection.prepareStatement(sql);
+            setParameters(preparedStatement, args);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                NguoiDung nd = mapResultSetToNguoiDung(resultSet);
+                lnv.add(nd);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            closeResources();
+        }
+        return lnv;
+    }
+
+    private void setParameters(PreparedStatement preparedStatement, Object... args) throws SQLException {
+        for (int i = 0; i < args.length; i++) {
+            preparedStatement.setObject(i + 1, args[i]);
+        }
+    }
+
+    private void closeResources() {
+        try {
+            if (resultSet != null) resultSet.close();
+            if (preparedStatement != null) preparedStatement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private NguoiDung mapResultSetToNguoiDung(ResultSet rs) throws SQLException {
+        NguoiDung nd = new NguoiDung();
+        // Gán các giá trị từ ResultSet vào các trường của NguoiDung
+        return nd;
     }
 }

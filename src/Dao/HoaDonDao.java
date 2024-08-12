@@ -166,6 +166,7 @@ public class HoaDonDao {
     }
 
     public void addHoaDon(String tenKH, String sdt, String diaChi, int PTTT, int TongTien) {
+        System.out.println("TenKH:" + tenKH);
         long millis = System.currentTimeMillis();
         String query = "INSERT INTO HoaDon (NguoiDung_ID, TenKH, sdt, DiaChi, NgayTao, PTTT, TongTien, TrangThai) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {

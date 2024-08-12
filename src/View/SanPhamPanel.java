@@ -44,6 +44,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     public SanPhamPanel(java.awt.Frame parent, boolean modal) throws Exception {
         initComponents();
+        
         mauDao = new MauDao();
         viDao = new ViDao();
         loaiDao = new LoaiDao();
@@ -70,6 +71,7 @@ public class SanPhamPanel extends javax.swing.JPanel {
 
     SanPhamPanel() {
         initComponents();
+        
     }
 
     public void getCBBTenMau() {
